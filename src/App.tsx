@@ -51,16 +51,16 @@ function App() {
       const correct = answer === question[questionNumber].correct_answer;
       if (correct) {
         setScore(score + 10);
-        const answerObject = {
-          question: question[questionNumber].question,
-          answer,
-          correct,
-          correctAnswer: question[questionNumber].correct_answer,
-        };
-        setUserAnswer((prev) => [...prev, answerObject]);
       }
+      const answerObject = {
+        question: question[questionNumber].question,
+        answer,
+        correct,
+        correctAnswer: question[questionNumber].correct_answer,
+      };
+      setUserAnswer((prev) => [...prev, answerObject]);
     }
-    console.log(e);
+    // console.log(e);
   };
 
   const nextQuestion = () => {
@@ -102,9 +102,14 @@ function App() {
             !gameover &&
             userAnswer.length === questionNumber + 1 &&
             questionNumber !== TOTAL_QUESTION - 1 ? (
-              <button className="btn-next" onClick={nextQuestion}>
-                Next Question
-              </button>
+              <>
+                <span>
+                  Correct Answer : {question[questionNumber].correct_answer}
+                </span>
+                <button className="btn-next" onClick={nextQuestion}>
+                  Next Question
+                </button>
+              </>
             ) : null}
           </>
         )}
